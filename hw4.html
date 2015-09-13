@@ -49,11 +49,13 @@
 					  document.write(rows[i].getElementsByTagName("Feeds")[0].childNodes.nodeValue);
 					  document.write("</td><td>");
 					  document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
-					  document.write("</td><td>");
+					  document.write("</td><td><a href='");
 					  document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					  document.write("</td><td>");
+					  document.write("'>");
+					  document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+					  document.write("</a></td><td><img src='");
 					  document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
-					  document.write("</td></tr>");
+					  document.write("'></td></tr>");
 				  }
 				 //footb = xmlDoc.getElementsByTagName("Table");
 				 //console.log(footb);
