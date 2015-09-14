@@ -23,21 +23,17 @@
 				 {
 				 // code for IE7+, Firefox, Chrome, Opera, Safari
 				 xmlhttp = new XMLHttpRequest();
-				 console.log(xmlhttp);
 				 }
 				 else
 				 {
 				 // code for IE6, IE5
 				 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				 console.log("Else");
-				 console.log(xmlhttp);
 				 }
 				 xmlhttp.open("GET",url,false); //open, send, responseXML are
 				 xmlhttp.send(); //properties of XMLHTTPRequest
 				 xmlDoc=xmlhttp.responseXML;
-				 document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");
 				 var rows = xmlDoc.getElementsByTagName("Row");
-				 console.log("Came here");
+				 document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");	
 				 for (i = 0; i < rows.length; i++)
 				  { 
 					  document.write("<tr><td>");
@@ -45,9 +41,15 @@
 					  document.write("</td><td>");
 					  document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
 					  document.write("</td><td>");
-					  console.log(rows[i].getElementsByTagName("Feeds")[0]);
-					  document.write(rows[i].getElementsByTagName("Feeds")[0].childNodes.nodeValue);
-					  document.write("</td><td>");
+					  var feeds = rows[i].getElementsByTagName("Feed");
+					  
+				 	  for (j=0; j< feeds.length; j++){
+				 	  	document.write("<ul><li>");
+						  document.write(feeds[j].childNodes[0].nodeValue);
+						  document.write("</li></ul>");
+						  
+						}
+						document.write("</td><td>");
 					  document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
 					  document.write("</td><td><a href='");
 					  document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
@@ -57,31 +59,6 @@
 					  document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
 					  document.write("'></td></tr>");
 				  }
-				 //footb = xmlDoc.getElementsByTagName("Table");
-				 //console.log(footb);
-				 /*for ( var i = 0; i < footb.length; i++) {
-				 	footbNodeList = footb.item(i).childNodes;
-				 	//document.write("<table><tr>");
-				 	console.log("Came here");
-				 	for (j = 0; j < footbNodeList.length; j++) {
-	 					//console.log(footbNodeList.item(j).childNodes);
-	 					if (footbNodeList.item(j).childNodes[j].nodeName=="Data") {
-	 						console.log("This is data node name");
-	 						//document.write("<th>");
-	 						//document.write(footbNodeList.item(j).nodeValue);
-	 						//document.write("</th>");
-	 					}
-					}
-				 	//document.write("</tr></table>");
-				 }
-				 //for (j=0;j<footbNodeList.length;j++) {
-	 			// do more stuff
-	 		//	}
-				 //console.log(footb);
-				 //console.log(xmlDoc);
-				 return xmlDoc;
-				 }
-				// ....... processing the document goes here*/
 				document.write("</table>");
 				document.close();
 				console.log("Finished");
