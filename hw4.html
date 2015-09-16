@@ -9,11 +9,12 @@
 <body style="text-align: center;">
 <p>Enter URL for Company list XML file</p>
 <input type="text" id="url"><br><br>
-<input type="submit" value="Submit Query" onclick="loadXML()">
+<input type="submit" value="Submit Query" onclick="testClick()">
 <script type="text/javascript">
 	
+			function testClick() {
+			var myWindow = window.open("", "myWindow", "width=900, height=600");
 			var xmlDoc;
-			function loadXML() {
 			var url = document.getElementById("url").value;
 			if (url == "") {
 				alert("Please enter URL in the text box to continue");
@@ -30,40 +31,42 @@
 				 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 				 }
 				 xmlhttp.open("GET",url,false); //open, send, responseXML are
-				 xmlhttp.send(); //properties of XMLHTTPRequest
-				 xmlDoc=xmlhttp.responseXML;
-				 var rows = xmlDoc.getElementsByTagName("Row");
-				 document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");	
-				 for (i = 0; i < rows.length; i++)
-				  { 
-					  document.write("<tr><td>");
-					  document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
-					  document.write("</td><td>");
-					  document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
-					  document.write("</td><td>");
-					  var feeds = rows[i].getElementsByTagName("Feed");
-					  
-				 	  for (j=0; j< feeds.length; j++){
-				 	  	document.write("<ul><li>");
-						  document.write(feeds[j].childNodes[0].nodeValue);
-						  document.write("</li></ul>");
+				 console.log(xmlhttp);
+				 //if (xmlhttp.readyState!=4 && xmlhttp.status!=200) {
+					 xmlhttp.send(); //properties of XMLHTTPRequest
+					 xmlDoc=xmlhttp.responseXML;
+					 var rows = xmlDoc.getElementsByTagName("Row");
+					 myWindow.document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");	
+					 for (i = 0; i < rows.length; i++)
+					  { 
+						  myWindow.document.write("<tr><td>");
+						  myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
+						  myWindow.document.write("</td><td>");
+						  myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
+						  myWindow.document.write("</td><td>");
+						  var feeds = rows[i].getElementsByTagName("Feed");
 						  
-						}
-						document.write("</td><td>");
-					  document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
-					  document.write("</td><td><a href='");
-					  document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					  document.write("'>");
-					  document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					  document.write("</a></td><td><img src='");
-					  document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
-					  document.write("'></td></tr>");
-				  }
-				document.write("</table>");
-				document.close();
-				console.log("Finished");
+					 	  for (j=0; j< feeds.length; j++){
+					 	  	myWindow.document.write("<ul><li>");
+							  myWindow.document.write(feeds[j].childNodes[0].nodeValue);
+							  myWindow.document.write("</li></ul>");
+							  
+							}
+							myWindow.document.write("</td><td>");
+						  myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
+						  myWindow.document.write("</td><td><a href='");
+						  myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						  myWindow.document.write("'>");
+						  myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						  myWindow.document.write("</a></td><td><img src='");
+						  myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
+						  myWindow.document.write("'></td></tr>");
+					  }
+					myWindow.document.write("</table>");
+					myWindow.document.close();
 			}
 		}
+	
 </script>
 </body>
 </html>
