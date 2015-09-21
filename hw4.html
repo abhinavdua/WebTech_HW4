@@ -17,17 +17,13 @@
 			function handleServerResponse() {
 					if (xmlhttp.readyState ==4) {
 						if (xmlhttp.status == 200) {
-					    alert("URL exists");
-					    myWindow = window.open("", "myWindow", "width=900, height=600");
+					    	return 1;
 						}
 					    else if (xmlhttp.status == 404) {
 					    	alert("Sorry, the requested file does not exist");
 					    }
-						
 					}
 			}
-
-
 			function testClick() {
 			var xmlDoc;
 			var url = document.getElementById("url").value;
@@ -37,47 +33,52 @@
 			else {
 				if (window.XMLHttpRequest)
 				 {
-				 // code for IE7+, Firefox, Chrome, Opera, Safari
-				 xmlhttp = new XMLHttpRequest();
+				 	// code for IE7+, Firefox, Chrome, Opera, Safari
+				 	xmlhttp = new XMLHttpRequest();
 				 }
 				 else
 				 {
-				 // code for IE6, IE5
-				 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				 	// code for IE6, IE5
+				 	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 				 }
 				 xmlhttp.onreadystatechange=handleServerResponse; 
 				 xmlhttp.open("GET",url,false); //open, send, responseXML are
 				 xmlhttp.send(); //properties of XMLHTTPRequest
 				 xmlDoc=xmlhttp.responseXML;
-				 var rows = xmlDoc.getElementsByTagName("Row");
-				 myWindow.document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");	
+				 if(xmlDoc.getElementsByTagName("parsererror").length>0){
+				 	alert("Error parsing XML");
+				 }
+				 else {
+				 	var rows = xmlDoc.getElementsByTagName("Row");
+				 	myWindow = window.open("", "myWindow", "width=900, height=600");
+				 	myWindow.document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");	
 				 for (i = 0; i < rows.length; i++)
-				  { 
-					  myWindow.document.write("<tr><td>");
-					  myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
-					  myWindow.document.write("</td><td>");
-					  myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
-					  myWindow.document.write("</td><td>");
-					  var feeds = rows[i].getElementsByTagName("Feed");
-					  
-				 	  for (j=0; j< feeds.length; j++){
+				 { 
+					myWindow.document.write("<tr><td>");
+					myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
+					myWindow.document.write("</td><td>");
+					myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
+					myWindow.document.write("</td><td>");
+					var feeds = rows[i].getElementsByTagName("Feed");
+				 	for (j=0; j< feeds.length; j++) {
 				 	  	myWindow.document.write("<ul><li>");
-						  myWindow.document.write(feeds[j].childNodes[0].nodeValue);
-						  myWindow.document.write("</li></ul>");
-						  
+						myWindow.document.write(feeds[j].childNodes[0].nodeValue);
+						myWindow.document.write("</li></ul>");
 						}
-						myWindow.document.write("</td><td>");
-					  myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
-					  myWindow.document.write("</td><td><a href='");
-					  myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					  myWindow.document.write("'>");
-					  myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					  myWindow.document.write("</a></td><td><img src='");
-					  myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
-					  myWindow.document.write("'></td></tr>");
+					myWindow.document.write("</td><td>");
+					myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
+					myWindow.document.write("</td><td><a href='");
+					myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+					myWindow.document.write("'>");
+					myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+					myWindow.document.write("</a></td><td><img src='");
+					myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
+					myWindow.document.write("'></td></tr>");
 				  }
 				myWindow.document.write("</table>");
 				myWindow.document.close();
+				 }
+				 
 				
 			}
 		}
