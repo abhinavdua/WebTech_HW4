@@ -50,33 +50,40 @@
 				 }
 				 else {
 				 	var rows = xmlDoc.getElementsByTagName("Row");
+				 	var data = xmlDoc.getElementsByTagName("Data");
 				 	myWindow = window.open("", "myWindow", "width=900, height=600");
-				 	myWindow.document.write("<table border='1'><tr><th>Network</th><th>Owner</th><th>Feeds</th><th>Notes</th><th>HomePage</th><th>Logo</th></tr>");	
-				 for (i = 0; i < rows.length; i++)
-				 { 
-					myWindow.document.write("<tr><td>");
-					myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
-					myWindow.document.write("</td><td>");
-					myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
-					myWindow.document.write("</td><td>");
-					var feeds = rows[i].getElementsByTagName("Feed");
-				 	for (j=0; j< feeds.length; j++) {
-				 	  	myWindow.document.write("<ul><li>");
-						myWindow.document.write(feeds[j].childNodes[0].nodeValue);
-						myWindow.document.write("</li></ul>");
-						}
-					myWindow.document.write("</td><td>");
-					myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
-					myWindow.document.write("</td><td><a href='");
-					myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					myWindow.document.write("'>");
-					myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
-					myWindow.document.write("</a></td><td><img src='");
-					myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
-					myWindow.document.write("'></td></tr>");
-				  }
-				myWindow.document.write("</table>");
-				myWindow.document.close();
+				 	myWindow.document.write("<table border='1'><tr>");
+					 for (i = 0; i < data.length; i++) {
+					 	myWindow.document.write("<th>");
+					 	myWindow.document.write(data[i].childNodes[0].nodeValue);
+					 	myWindow.document.write("</th>");
+					 }
+					 myWindow.document.write("</tr>");
+					 for (i = 0; i < rows.length; i++)
+					 { 
+						myWindow.document.write("<tr><td>");
+						myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
+						myWindow.document.write("</td><td>");
+						myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
+						myWindow.document.write("</td><td>");
+						var feeds = rows[i].getElementsByTagName("Feed");
+					 	for (j=0; j< feeds.length; j++) {
+					 	  	myWindow.document.write("<ul><li>");
+							myWindow.document.write(feeds[j].childNodes[0].nodeValue);
+							myWindow.document.write("</li></ul>");
+							}
+						myWindow.document.write("</td><td>");
+						myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
+						myWindow.document.write("</td><td><a href='");
+						myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						myWindow.document.write("'>");
+						myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						myWindow.document.write("</a></td><td><img src='");
+						myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
+						myWindow.document.write("'></td></tr>");
+					  }
+					myWindow.document.write("</table>");
+					myWindow.document.close();
 				 }
 				 
 				

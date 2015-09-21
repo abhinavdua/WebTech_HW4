@@ -21,11 +21,7 @@
    </Row>
 
 
-   <Row>
-    <Network>Bravo</Network>
-    <Owner>NBC Universal</Owner>
-    <Feeds>
-        <Feed>Bravo East</Feed>
+   <Row>ed>
         <Feed>Bravo West</Feed>
         <Feed>Bravo On Demand</Feed>
     </Feeds>
