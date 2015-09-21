@@ -13,7 +13,7 @@
 <script type="text/javascript">
 			
 			var myWindow;
-
+			var network_name = document.createTextNode("N.A");
 			function handleServerResponse() {
 					if (xmlhttp.readyState ==4) {
 						if (xmlhttp.status == 200) {
@@ -51,7 +51,7 @@
 				 else {
 				 	var rows = xmlDoc.getElementsByTagName("Row");
 				 	var data = xmlDoc.getElementsByTagName("Data");
-				 	myWindow = window.open("", "myWindow", "width=900, height=600");
+				 	myWindow = window.open("", "myWindow", "width=900, height=600, scrollbars=1");
 				 	myWindow.document.write("<table border='1'><tr>");
 					 for (i = 0; i < data.length; i++) {
 					 	myWindow.document.write("<th>");
@@ -62,9 +62,21 @@
 					 for (i = 0; i < rows.length; i++)
 					 { 
 						myWindow.document.write("<tr><td>");
-						myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
+						try {
+							myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
+						}
+						catch(err) {
+							rows[i].getElementsByTagName("Network")[0].appendChild(network_name);
+							myWindow.document.write(rows[i].getElementsByTagName("Network")[0].childNodes[0].nodeValue);
+						}
 						myWindow.document.write("</td><td>");
-						myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
+						try {
+							myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
+						}
+						catch(err) {
+							rows[i].getElementsByTagName("Owner")[0].appendChild(network_name);
+							myWindow.document.write(rows[i].getElementsByTagName("Owner")[0].childNodes[0].nodeValue);
+						}
 						myWindow.document.write("</td><td>");
 						var feeds = rows[i].getElementsByTagName("Feed");
 					 	for (j=0; j< feeds.length; j++) {
@@ -73,13 +85,40 @@
 							myWindow.document.write("</li></ul>");
 							}
 						myWindow.document.write("</td><td>");
-						myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
+						try {
+							myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
+						}
+						catch(err) {
+							rows[i].getElementsByTagName("Notes")[0].appendChild(network_name);
+							myWindow.document.write(rows[i].getElementsByTagName("Notes")[0].childNodes[0].nodeValue);
+						}
 						myWindow.document.write("</td><td><a href='");
-						myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						try {
+							myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						}
+						catch(err) {
+							var hash = document.createTextNode("#");
+							rows[i].getElementsByTagName("HomePage")[0].appendChild(hash);
+							myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						}
 						myWindow.document.write("'>");
-						myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						try {
+							myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						}
+						catch(err) {
+							rows[i].getElementsByTagName("HomePage")[0].appendChild(network_name);
+							myWindow.document.write(rows[i].getElementsByTagName("HomePage")[0].childNodes[0].nodeValue);
+						}
 						myWindow.document.write("</a></td><td><img src='");
-						myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
+						try {
+							myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
+						}
+						catch(err) {
+							var image_alt = document.createTextNode("Image not available");
+							myWindow.document.write("#' width='100' height='100' alt='");
+							rows[i].getElementsByTagName("Logo")[0].appendChild(image_alt);
+							myWindow.document.write(rows[i].getElementsByTagName("Logo")[0].childNodes[0].nodeValue);
+						}
 						myWindow.document.write("'></td></tr>");
 					  }
 					myWindow.document.write("</table>");
