@@ -80,9 +80,13 @@
                             for (j = 0; j < feeds.length; j++) {
 
                                 try {
-                                    feeds[j].childNodes[0].nodeValue;
-                                    myWindow.document.write("<ul><li>");
-                                    myWindow.document.write(feeds[j].childNodes[0].nodeValue);
+                                    var val = feeds[j].childNodes[0].nodeValue;
+                                    val = val.replace(/\s+/g, '');
+                                    if (val != "")
+                                    {
+                                        myWindow.document.write("<ul><li>");
+                                        myWindow.document.write(feeds[j].childNodes[0].nodeValue);
+                                    }
                                 } catch (err) {
                                     console.log(err);
                                 }

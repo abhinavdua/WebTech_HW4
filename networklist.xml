@@ -51,5 +51,38 @@ A product of the merger of Viacom's HA! TV Comedy Network and The Comedy Channel
 http://cs-server.usc.edu:45678/hw/hw4/ComedyCentral.png
 </Logo>
 </Row>
+<Row>
+<Network>Comedy Central</Network>
+<Owner>Viacom Media Networks</Owner>
+<Feeds>
+<Feed>Comedy Central East</Feed>
+<Feed>Comedy Central West</Feed>
+<Feed>Comedy Central On Demand</Feed>
+</Feeds>
+<Notes>
+A product of the merger of Viacom's HA! TV Comedy Network and The Comedy Channel, owned by Time Warner. (English) and (Spanish) audio feed
+</Notes>
+<HomePage>http://cc.com/</HomePage>
+<Logo>
+http://cs-server.usc.edu:45678/hw/hw4/ComedyCentral.png
+</Logo>
+</Row>
+    <Row>
+<Network>Comedy Central</Network>
+<Owner>Viacom Media Networks</Owner>
+<Feeds>
+<Feed>Comedy Central East</Feed>
+<Feed>Comedy Central West</Feed>    
+<Feed>Comedy Central On Demand</Feed>
+</Feeds>
+<Notes>
+A product of the merger of Viacom's HA! TV Comedy Network and The Comedy Channel, owned by Time Warner. (English) and (Spanish) audio feed
+</Notes>
+<HomePage>http://cc.com/</HomePage>
+<Logo>
+http://cs-server.usc.edu:45678/hw/hw4/ComedyCentral.png
+</Logo>
+</Row>
+    
 </Table>
 </Workbook>
